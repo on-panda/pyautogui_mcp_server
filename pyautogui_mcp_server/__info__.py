@@ -1,0 +1,7 @@
+__version__ = "0.1.0"
+__description__ = "MCP server package for running Python with pyautogui instrumentation."
+__license__ = "MIT"
+__author__ = "DIYer22"
+__maintainer__ = "DIYer22"
+__url__ = "https://github.com/on-panda/pyautogui_mcp_server"
+__issues__ = "https://github.com/on-panda/pyautogui_mcp_server/issues"

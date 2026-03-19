@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyautogui_mcp_server"
+dynamic = ["version"]
+description = "MCP server package for running Python with pyautogui instrumentation."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "DIYer22" }]
+maintainers = [{ name = "DIYer22" }]
+license = "MIT"
+license-files = ["LICENSE"]
+dependencies = [
+    "mcp>=1.26.0",
+    "pyautogui>=0.9.54",
+    "Pillow>=10.0.0",
+    "starlette>=0.46.0",
+    "uvicorn>=0.30.0",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+keywords = ["mcp", "pyautogui", "automation", "server"]
+
+[project.urls]
+Homepage = "https://github.com/on-panda/pyautogui_mcp_server"
+Repository = "https://github.com/on-panda/pyautogui_mcp_server"
+Issues = "https://github.com/on-panda/pyautogui_mcp_server/issues"
+
+[project.scripts]
+pyautogui-mcp-server = "pyautogui_mcp_server.server:main"
+pyautogui-mcp-wake = "pyautogui_mcp_server.wake:main"
+
+[project.optional-dependencies]
+dev = [
+    "build>=1.2.0",
+    "pytest>=8.0.0",
+    "twine>=5.0.0",
+]
+
+[tool.setuptools]
+include-package-data = false
+
+[tool.setuptools.packages.find]
+include = ["pyautogui_mcp_server*"]
+
+[tool.setuptools.dynamic]
+version = { attr = "pyautogui_mcp_server.__info__.__version__" }
