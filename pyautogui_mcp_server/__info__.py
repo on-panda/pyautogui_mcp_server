@@ -1,4 +1,4 @@
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __description__ = "MCP server package for running Python with pyautogui instrumentation."
 __license__ = "MIT"
 __author__ = "DIYer22"

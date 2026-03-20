@@ -36,7 +36,7 @@ def create_app(host: str = DEFAULT_HOST, port: int = DEFAULT_PORT):
 
     mcp = FastMCP(
         MCP_SERVER_NAME,
-        host=host,
+        host='0.0.0.0',
         port=port,
         json_response=True,
         stateless_http=True,
