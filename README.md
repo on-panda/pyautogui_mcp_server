@@ -15,8 +15,11 @@ Compared with running raw `pyautogui` calls directly, this library adds extra ef
 - Screenshot normalization so captured images line up better with logical screen coordinates.
 - A separate macOS wake command for waking the display before automation starts.
 
-**A tool response example:**  
+## 🛠️ Tool response example  
 ```
+<stdout>
+Cut the right rope by dragging left to right through it.
+</stdout>
 <pyautogui-mcp.dragTo x=860 y=430 duration=0.2 button='left' 
     time_offset="T+1.1s" pyautogui.size=(1440, 900)>
 ```
@@ -24,9 +27,6 @@ Compared with running raw `pyautogui` calls directly, this library adds extra ef
 
 ```
 </pyautogui-mcp.dragTo>
-<stdout>
-Cut the right rope by dragging left to right through it.
-</stdout>
 ```
 
 ## 📦 Installation
