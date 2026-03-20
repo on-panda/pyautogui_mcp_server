@@ -1,10 +1,10 @@
-# pyautogui_mcp_server
+# MCP server for simplest GUI agent 🕹️🤖
 
 `pyautogui_mcp_server` packages a Streamable HTTP MCP server for running Python code with `pyautogui` instrumentation.
 
 It is designed for GUI automation workflows where plain `pyautogui` execution is not enough. The package adds MCP-friendly output handling, richer screenshots, and a small macOS display wake helper.
 
-## What this package adds
+## ✨ What this package adds
 
 Compared with running raw `pyautogui` calls directly, this library adds extra effort in the following areas:
 
@@ -15,7 +15,21 @@ Compared with running raw `pyautogui` calls directly, this library adds extra ef
 - Screenshot normalization so captured images line up better with logical screen coordinates.
 - A separate macOS wake command for waking the display before automation starts.
 
-## Installation
+**A tool response example:**  
+```
+<pyautogui-mcp.dragTo x=860 y=430 duration=0.2 button='left' 
+    time_offset="T+1.1s" pyautogui.size=(1440, 900)>
+```
+<img width="512" alt="cut-the-rope-by-gui-agent" src="https://yl-data.github.io/2506.onPanda/pyautogui_mcp_server_assets/image/2603.cut-the-rope.webp" />
+
+```
+</pyautogui-mcp.dragTo>
+<stdout>
+Cut the right rope by dragging left to right through it.
+</stdout>
+```
+
+## 📦 Installation
 
 ```bash
 pip install pyautogui_mcp_server
@@ -27,7 +41,7 @@ For local development:
 pip install -e .[dev]
 ```
 
-## Run the MCP server
+## 🚀 Run the MCP server
 
 Use the module entrypoint:
 
@@ -49,7 +63,7 @@ python -m pyautogui_mcp_server --help
 
 The server exposes a `run_python_with_pyautogui` MCP tool that executes Python in a fresh interpreter state with instrumented `pyautogui` behavior.
 
-## Wake a macOS display
+## 🖥️ Wake a macOS display
 
 The wake helper is macOS-only.
 
@@ -65,14 +79,7 @@ pyautogui-mcp-wake --help
 
 This helper sends a short user-activity pulse, optionally activates Finder, and briefly holds the display awake with `caffeinate`.
 
-## Development
 
-```bash
-make install-dev
-make test
-make build
-```
-
-## License
+## 📄 License
 
 MIT
