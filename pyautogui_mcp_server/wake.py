@@ -62,7 +62,7 @@ def _start_hold_command(cmd: list[str], startup_delay: float = 0.2) -> dict[str,
     }
 
 
-def wake_mac_display(hold_seconds: int = 60, activate_finder: bool = True) -> dict[str, Any]:
+def wake_mac_display(hold_seconds: int = 3600, activate_finder: bool = True) -> dict[str, Any]:
     """
     Try to wake a macOS display from the command line and keep it awake briefly.
 
@@ -125,8 +125,8 @@ def build_argument_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--hold-seconds",
         type=int,
-        default=60,
-        help="Seconds to keep the display from idling again. Default: 60.",
+        default=3600,
+        help="Seconds to keep the display from idling again. Default: 3600.",
     )
     parser.add_argument(
         "--no-activate-finder",

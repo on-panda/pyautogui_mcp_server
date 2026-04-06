@@ -9,6 +9,32 @@ DEFAULT_PORT = 9300
 CORS_EXPOSE_HEADERS = ["mcp-session-id", "mcp-protocol-version"]
 
 
+class MCPAcceptCompatibilityMiddleware:
+    """Normalize broad Accept headers for MCP JSON POST requests.
+
+    The MCP SDK version used by this project only treats an explicit
+    ``application/json`` token as acceptable for JSON responses and rejects
+    semantically valid wildcards such as ``*/*`` with HTTP 406.
+    """
+
+    def __init__(self, app, mcp_path: str = "/mcp") -> None:
+        self.app = app
+        self.mcp_path = mcp_path
+
+    async def __call__(self, scope, receive, send) -> None:
+        if scope["type"] == "http" and scope["method"] == "POST" and scope["path"] == self.mcp_path:
+            from starlette.datastructures import MutableHeaders
+
+            headers = MutableHeaders(scope=scope)
+            accept = headers.get("accept")
+            if not accept:
+                headers["accept"] = "application/json"
+            elif "*/*" in accept and "application/json" not in accept:
+                headers["accept"] = f"{accept}, application/json"
+
+        await self.app(scope, receive, send)
+
+
 def build_argument_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="pyautogui-mcp-server",
@@ -57,6 +83,7 @@ def create_app(host: str = DEFAULT_HOST, port: int = DEFAULT_PORT):
         return runtime.execute(code)
 
     app = mcp.streamable_http_app()
+    app.add_middleware(MCPAcceptCompatibilityMiddleware, mcp_path="/mcp")
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],
